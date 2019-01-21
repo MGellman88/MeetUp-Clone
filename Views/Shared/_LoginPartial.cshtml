@@ -1,0 +1,14 @@
+@model TheBelt.ViewModels.LoginViewModel
+
+<form asp-action="Login" asp-controller="Auth" method="POST">
+
+  <label asp-for="LoginEmail">Email</label><br>
+  <span asp-validation-for="LoginEmail"></span>
+  <input asp-for="LoginEmail" type="email"><br>
+
+  <label asp-for="LoginPassword">Password</label><br>
+  <span asp-validation-for="LoginPassword"></span>
+  <input asp-for="LoginPassword" type="password"><br>
+
+  <input type="submit" value="submit">
+</form>

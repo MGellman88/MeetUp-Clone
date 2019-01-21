@@ -1,0 +1,43 @@
+<style>
+    h1 {
+        display:inline-block;
+    }
+    a {
+        display:inline-block;
+        margin-left:150px;
+        font-size:20px;
+    }
+</style>
+
+
+<body>
+@model TheBelt.ViewModels.ActivityViewModel
+    <h1>Create A New Activity!</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+        <form asp-action="Create" asp-controller="Home" method="POST">
+            <span asp-validation-for="Event"></span>
+            <label asp-for="Event">Activity</label>
+            <input  asp-for="Event"><br><br>
+
+
+            <span asp-validation-for="Date"></span>
+            <label asp-for="Date">Activity Date</label>
+            <input asp-for="Date"><br><br>
+
+            <span asp-action="Description"></span>
+            <label asp-for="Description">Description</label>
+            <textarea asp-for="Description"></textarea><br><br>
+
+            <span asp-validation-for="Location"></span>
+            <label asp-for="Location">Location</label>
+            <input asp-for="Location"><br><br>
+
+            <span asp-validation-for="Duration"></span>
+            <label asp-for="Duration">Duration</label>
+            <input asp-for="Duration"><br><br>
+
+            <input type="submit" value="Create">
+        
+        </form>
+</body>

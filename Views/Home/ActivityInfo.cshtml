@@ -1,0 +1,34 @@
+<style>
+    h1 {
+        display:inline-block;
+    }
+    a {
+        display:inline-block;
+        margin-left:150px;
+        font-size:20px;
+    }
+</style>
+
+<body>
+<h1>Here is an activity!</h1>
+
+<a href="/dashboard">Dashboard</a>
+<a href="/logout">Logout</a>
+
+<h3>Date :@ViewBag.currentActivity.Date.ToString("MMM dd, yyyy") </h3>
+<h3>Location : @ViewBag.currentActivity.Location.ToString()</h3>
+@if(@ViewBag.currentActivity.Participants.Count > 0)
+{
+    <h2>Participants:</h2>
+
+        <ol>
+            @{
+            
+                @foreach(var participant in @ViewBag.currentActivity.Participants)
+                {
+                    <li>@participant.Attending.FirstName @participant.Attending.LastName</li>
+                }
+            }
+        </ol>
+}
+</body>

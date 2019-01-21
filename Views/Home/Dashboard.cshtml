@@ -1,0 +1,86 @@
+<style>
+    body {
+        text-align:center;
+    }
+    h1 {
+        display:inline-block;
+        margin-bottom:50px;
+    }
+    a {
+        display:inline-block;
+        margin-left:50px;
+    }
+    table {
+        margin:auto;
+        margin-bottom:50px;
+        text-align:center;
+    }
+    th {
+        width:200px;
+        text-align:center;
+        font-size:20px;
+    }
+    td {
+        border:1px solid black;
+        text-align:center;
+    }
+</style>
+
+<h1>LOOK AT ALL THE ACTIVITIES!</h1>
+<a href="/logout">Logout</a>
+
+<p> Welcome @ViewBag.userName</p>
+<p>@ViewBag.UserId</p>
+
+<table>
+    <thead>
+        <th>Activity</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Duration</th>
+        <th>Participants</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        @foreach(var activity in @ViewBag.allActivities)
+        {
+            <tr>
+                <td><a href="/ActivityInfo/@activity.ActivityId">@activity.Event</a></td>
+                <td>@activity.Date.ToString("MMM dd, yyyy")</td>
+                <td>@activity.Description</td>
+                <td>@activity.Duration</td>
+                <td>@activity.Participants.Count</td>
+                   @if(@ViewBag.UserId == @activity.UserId)
+                    {
+                        <td><a href="Delete/@activity.ActivityId">Delete</a></td>
+                    }
+                    else
+                    {
+                        if(@activity.Participants.Count == 0){
+                            <td><a href="join/@activity.ActivityId">Join</a></td>
+                        }else{
+                            int Count = 0;
+                            @foreach(var participant in @activity.Participants){
+                                @if(@participant.Attending == @ViewBag.currentUser){
+                                    Count = 1;
+                                }
+                            }
+                            if(Count == 1){
+                                <td><a href="leave/@activity.ActivityId">leave</a></td>
+                            }
+                            else{
+                                 <td><a href="join/@activity.ActivityId">join</a></td>
+                            }
+                        }
+                    }   
+                                 
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/CreateActivity">Create Activity</a>
+
+<!-- <form action="/CreateActivity" method="Get">
+    <input type="submit" value="Create Activity">
+</form> -->
